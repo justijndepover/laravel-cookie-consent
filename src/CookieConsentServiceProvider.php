@@ -23,6 +23,13 @@ class CookieConsentServiceProvider extends ServiceProvider
                     __DIR__ . '/../database/migrations/create_cookies_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_cookies_table.php'),
                 ], 'laravel-cookie-consent-migration');
             }
+
+            $this->publishes([
+                __DIR__.'/../resources/views/bar.blade.php' => base_path('resources/views/vendor/cookieConsent/bar.blade.php'),
+            ], 'laravel-cookie-consent-view');
         }
+
+        $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'cookieConsent');
     }
 }
