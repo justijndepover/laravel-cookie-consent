@@ -6,6 +6,9 @@
 
 Make your Laravel application comply with the EU cookie law.
 
+## Caution
+This application is still in development and could implement breaking changes. Please use at your own risk.
+
 ## Explanation
 This package stores all cookies in the database. Each cookie can be enabled / disabled by the user of your Laravel application.
 
@@ -16,9 +19,6 @@ A cookie bar will be added to your application with 2 options:
 ![dialog](https://raw.githubusercontent.com/justijndepover/laravel-cookie-consent/master/docs/screenshot.png)
 
 After confirming / denying the cookie bar, the user still has the option to change his preferences
-
-## Caution
-This application is still in development and could implement breaking changes. Please use at your own risk.
 
 ## Installation
 You can install the package with composer
@@ -70,8 +70,16 @@ include the following in your app layout:
 @include('cookie-consent::scripts')
 
 // before the closing body tag
-@include('cookie-consent::bar')
+@include('cookie-consent::bar', ['text' => 'This website makes use of cookies', 'accept' => 'Accept', 'cancel' => 'Refuse'])
 ```
+
+## Styling
+The package comes with a default tailwind styling. If you want to customize the layout, you should publish the view
+```sh
+php artisan vendor:publish --tag="laravel-cookie-consent-view"
+```
+
+Now you can edit the layout yourself.
 
 ## Security
 If you find any security related issues, please open an issue or contact me directly at [justijndepover@gmail.com](justijndepover@gmail.com).
