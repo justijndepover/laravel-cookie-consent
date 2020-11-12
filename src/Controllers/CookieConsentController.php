@@ -18,8 +18,8 @@ class CookieConsentController
             return response()->json();
         }
 
-        $cookies = \DB::table('cookies')->pluck('content');
-        return response()->json($cookies);
+        $cookies = \DB::table('cookies')->pluck('content')->implode("\n");
+        return response($cookies);
     }
 
     public function toggle($id)

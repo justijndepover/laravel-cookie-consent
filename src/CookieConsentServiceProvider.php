@@ -3,6 +3,8 @@
 namespace Justijndepover\CookieConsent;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\View\View;
+use DB;
 
 class CookieConsentServiceProvider extends ServiceProvider
 {
@@ -31,5 +33,13 @@ class CookieConsentServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'cookie-consent');
+
+        $this->app['view']->composer('cookie-consent::bar', function (View $view) {
+            $cookies = DB::table('cookies')->get()->filter(function ($cookie) {
+                return true;
+            })->pluck('content')->implode("\n");
+
+            $view->with('cookies', $cookies);
+        });
     }
 }
