@@ -13,7 +13,7 @@
     "autoload": {
         "psr-4": {
             "Justijndepover\\CookieConsent\\": "src/"
-        },
+        }
     },
     "autoload-dev": {
         "psr-4": {

@@ -4,7 +4,7 @@ namespace Justijndepover\CookieConsent;
 
 use Illuminate\Support\ServiceProvider;
 
-class SettingsServiceProvider extends ServiceProvider
+class CookieConsentServiceProvider extends ServiceProvider
 {
     public function register()
     {
@@ -21,7 +21,7 @@ class SettingsServiceProvider extends ServiceProvider
             if (! class_exists('CreateCookiesTable')) {
                 $this->publishes([
                     __DIR__ . '/../database/migrations/create_cookies_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_cookies_table.php'),
-                ], 'migrations');
+                ], 'laravel-cookie-consent-migration');
             }
         }
     }
