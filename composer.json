@@ -1,0 +1,32 @@
+{
+    "name": "justijndepover/laravel-cookie-consent",
+    "description": "Make your Laravel application comply with the EU cookie law.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Justijn Depover",
+            "email": "justijndepover@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Justijndepover\\CookieConsent\\": "src/"
+        },
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Justijndepover\\CookieConsent\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Justijndepover\\CookieConsent\\CookieConsentServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
