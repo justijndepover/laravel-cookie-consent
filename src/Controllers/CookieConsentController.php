@@ -8,8 +8,14 @@ class CookieConsentController
 {
     public function index(Request $request)
     {
-        if ($request->cookie(config('cookie-consent.cookie_name')) != 'true') {
-            return;
+        \Cookie::queue(
+            config('cookie-consent.cookie_name'),
+            (bool) $request->get('state'),
+            config('cookie-consent.cookie_lifetime')
+        );
+
+        if ((bool) $request->get('state') == false) {
+            return response()->json();
         }
 
         $cookies = \DB::table('cookies')->pluck('content');

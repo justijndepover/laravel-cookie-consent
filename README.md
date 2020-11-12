@@ -57,18 +57,19 @@ return [
      */
     'cookie_lifetime' => 365 * 20,
 
+    /*
+     * These middleware will get attached onto each Laravel Cookie Consent route, giving you
+     * the chance to add your own middleware to this list or change any of
+     * the existing middleware. Or, you can simply stick with this list.
+     */
+    'middleware' => ['web'],
+
 ];
 ```
 
 ## Usage
 include the following in your app layout:
 ```blade
-// below your application javascript files
-@include('cookie-consent::javascript')
-
-// at the top of your body tag, all cookie scripts will be rendered here
-@include('cookie-consent::scripts')
-
 // before the closing body tag
 @include('cookie-consent::bar', ['text' => 'This website makes use of cookies', 'accept' => 'Accept', 'cancel' => 'Refuse'])
 ```

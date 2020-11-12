@@ -25,7 +25,7 @@ class CookieConsentServiceProvider extends ServiceProvider
             }
 
             $this->publishes([
-                __DIR__.'/../resources/views/bar.blade.php' => base_path('resources/views/vendor/cookie-consent/bar.blade.php'),
+                __DIR__.'/../resources/views/cookiebar.blade.php' => base_path('resources/views/vendor/cookie-consents/cookiebar.blade.php'),
             ], 'laravel-cookie-consent-view');
         }
 
