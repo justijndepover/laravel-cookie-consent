@@ -16,19 +16,19 @@ class CookieConsentController
         );
 
         if ((bool) $request->get('state') == false) {
-            return response();
+            return response('');
         }
 
         $class = config('cookie-consent.cookie_class');
 
         if (! class_exists($class)) {
-            return response();
+            return response('');
         }
 
         $object = new $class;
 
         if (! $object instanceof \Illuminate\Database\Eloquent\Model) {
-            return response();
+            return response('');
         }
 
         $cookies = $object->pluck('content')->implode("\n");
