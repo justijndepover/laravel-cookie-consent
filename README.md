@@ -58,6 +58,11 @@ return [
     'cookie_lifetime' => 365 * 20,
 
     /*
+     * Set the model class that represents the cookies table
+     */
+    'cookie_class' => \App\Models\Cookie::class,
+
+    /*
      * These middleware will get attached onto each Laravel Cookie Consent route, giving you
      * the chance to add your own middleware to this list or change any of
      * the existing middleware. Or, you can simply stick with this list.

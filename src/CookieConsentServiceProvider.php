@@ -35,11 +35,21 @@ class CookieConsentServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'cookie-consent');
 
         $this->app['view']->composer('cookie-consent::bar', function (View $view) {
-            $cookies = DB::table('cookies')->get()->filter(function ($cookie) {
-                return true;
-            })->pluck('content')->implode("\n");
+            $class = config('cookie-consent.cookie_class');
 
-            $view->with('cookies', $cookies);
+            if (class_exists($class)) {
+                $object = new $class;
+            } else {
+                $object = '';
+            }
+
+            if ($object instanceof \Illuminate\Database\Eloquent\Model) {
+                $cookies = $object->get()->filter(function ($cookie) {
+                    return true;
+                })->pluck('content')->implode("\n");
+            }
+
+            $view->with('cookies', $cookies ?? '');
         });
     }
 }
