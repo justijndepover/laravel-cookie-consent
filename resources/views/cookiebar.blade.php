@@ -6,8 +6,8 @@
             </div>
 
             <div>
-                <button data-refuse-cookies class="text-sm text-gray-500 border rounded-md transition duration-100 transition-shadow px-2 py-1 mr-2 shadow-sm hover:shadow-md">{{ $cancel ?? 'Decline' }}</button>
-                <button data-accept-cookies class="text-sm text-white bg-green-500 border border-green-600 rounded-md transition duration-100 transition-shadow px-2 py-1 shadow-sm hover:shadow-md">{{ $accept ?? 'Accept' }}</button>
+                <button data-refuse-cookies class="text-sm text-gray-500 border rounded-md duration-100 transition-shadow px-2 py-1 mr-2 shadow-sm hover:shadow-md">{{ $cancel ?? 'Decline' }}</button>
+                <button data-accept-cookies class="text-sm text-white bg-green-500 border border-green-600 rounded-md duration-100 transition-shadow px-2 py-1 shadow-sm hover:shadow-md">{{ $accept ?? 'Accept' }}</button>
             </div>
         </div>
     </div>
