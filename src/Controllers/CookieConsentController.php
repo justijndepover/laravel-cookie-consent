@@ -38,8 +38,26 @@ class CookieConsentController
 
     public function toggle($id)
     {
-        // $email = Cookie::findOrFail($id);
+        $ignoredCookies = explode(',', request()->cookie(config('cookie-consent.cookie_name')));
 
-        // return $email->body;
+        if (in_array($id, $ignoredCookies)) {
+            if (($key = array_search($id, $ignoredCookies)) !== false) {
+                unset($ignoredCookies[$key]);
+            }
+        } else {
+            array_push($ignoredCookies, $id);
+        }
+
+        foreach ($ignoredCookies as $key => $value) {
+            if ($value == '') {
+                unset($ignoredCookies[$key]);
+            }
+        }
+
+        $ignoredCookies = implode(',', $ignoredCookies);
+
+        return redirect()->back()->cookie(
+            config('cookie-consent.cookie_name'), $ignoredCookies, config('cookie-consent.cookie_lifetime')
+        );
     }
 }
