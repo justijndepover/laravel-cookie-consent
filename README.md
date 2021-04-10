@@ -121,6 +121,13 @@ php artisan vendor:publish --tag="laravel-cookie-consent-view"
 
 Now you can edit the layout yourself.
 
+The script loaded by the plugin expects the buttons to have a data attribute as followed:
+
+```html
+<button data-refuse-cookies>Decline</button>
+<button data-accept-cookies>Accept</button>
+```
+
 ## Security
 If you find any security related issues, please open an issue or contact me directly at [justijndepover@gmail.com](justijndepover@gmail.com).
 
