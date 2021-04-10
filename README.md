@@ -74,11 +74,29 @@ return [
 ```
 
 ## Usage
-include the following in your app layout:
+include the following in your app layout to render the cookie bar:
 ```blade
 // before the closing body tag
 @include('cookie-consent::bar', ['text' => 'This website makes use of cookies', 'accept' => 'Accept', 'cancel' => 'Refuse'])
 ```
+
+## toggle cookies
+You as the developer should provide a page where each cookie is rendered in a table list. To let the end user toggle each cookie, make a post request as followed:
+```blade
+@foreach ($cookies as $cookie) <!-- get the cookies from database -->
+    <form action="{{ route('cookies.toggle', ['cookie' => $cookie]) }}" method="POST">
+        @csrf
+
+        @if ($cookie->isEnabled())
+            <button type="submit" class="bg-green-200 text-green-600 text-xs rounded-full px-2 py-1">Active</button>
+        @else
+            <button type="submit" class="bg-red-200 text-red-600 text-xs rounded-full px-2 py-1">Not active</button>
+        @endif
+    </form>
+@endforeach
+```
+
+The endpoint `cookies.toggle` is setup by the package and will toggle whether or not the cookie should be rendered.
 
 ## Styling
 The package comes with a default tailwind styling. If you want to customize the layout, you should publish the view
