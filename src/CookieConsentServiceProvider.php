@@ -43,9 +43,11 @@ class CookieConsentServiceProvider extends ServiceProvider
                 $object = '';
             }
 
+            $ignoredCookies = explode(',', request()->cookie(config('cookie-consent.cookie_name')));
+
             if ($object instanceof \Illuminate\Database\Eloquent\Model) {
-                $cookies = $object->get()->filter(function ($cookie) {
-                    return true;
+                $cookies = $object->get()->filter(function ($cookie) use ($ignoredCookies) {
+                    return ! in_array($cookie->id, $ignoredCookies);
                 })->pluck('content')->implode("\n");
             }
 

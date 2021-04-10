@@ -1,4 +1,4 @@
-@if (config('cookie-consent.enabled') && request()->hasCookie(config('cookie-consent.cookie_name')) != true)
+@if (config('cookie-consent.enabled') && ! request()->hasCookie(config('cookie-consent.cookie_name')))
     @include('cookie-consent::cookiebar')
 
     <script>
@@ -64,6 +64,6 @@
             }
         })();
     </script>
-@elseif (config('cookie-consent.enabled') && request()->cookie(config('cookie-consent.cookie_name')) != false)
+@elseif (config('cookie-consent.enabled') && request()->hasCookie(config('cookie-consent.cookie_name')))
     {!! $cookies !!}
 @endif

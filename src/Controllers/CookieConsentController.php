@@ -11,7 +11,7 @@ class CookieConsentController
     {
         Cookie::queue(
             config('cookie-consent.cookie_name'),
-            (bool) $request->get('state'),
+            (string) '',
             config('cookie-consent.cookie_lifetime')
         );
 

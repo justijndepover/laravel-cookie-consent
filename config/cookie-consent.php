@@ -20,6 +20,7 @@ return [
 
     /*
      * Set the model class that represents the cookies table
+     * Make sure your Cookie model implements the InteractsWithCookies trait
      */
     'cookie_class' => \App\Models\Cookie::class,
 
