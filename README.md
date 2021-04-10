@@ -11,14 +11,17 @@ This application is still in development and could implement breaking changes. P
 
 ## Explanation
 This package stores all cookies in the database. Each cookie can be enabled / disabled by the user of your Laravel application.
+Accepting the cookie banner will load all cookies within the same request and execute them. (This is great for page trackers)
 
 A cookie bar will be added to your application with 2 options:
-- confirm: All cookie scripts will be loaded. (through javascript in the same request and all concurrent requests)
-- cancel: Not a single cookie script will be loaded.
+- Accept: All cookie scripts will be loaded. (through javascript in the same request and all concurrent requests)
+- Decline: Not a single cookie script will be loaded.
 
 ![dialog](https://raw.githubusercontent.com/justijndepover/laravel-cookie-consent/master/docs/screenshot.png)
 
-After confirming / denying the cookie bar, the user still has the option to change his preferences
+After confirming / denying the cookie bar, the user still has the option to change his preferences.
+
+The cookie value will always contain a encrypted list with the cookie id's that are turned of. Therefore, adding in a new cookie, has to be disabled by the end user again.
 
 ## Installation
 You can install the package with composer
@@ -26,7 +29,7 @@ You can install the package with composer
 composer require justijndepover/laravel-cookie-consent
 ```
 
-After installation you have to publish the migration
+After installation you have to publish the migration, if you don't have a cookies table / model
 ```sh
 php artisan vendor:publish --tag="laravel-cookie-consent-migration"
 php artisan migration
@@ -36,6 +39,18 @@ And optionally publish the configuration file
 ```sh
 php artisan vendor:publish --tag="laravel-cookie-consent-config"
 ```
+
+### model setup
+Your `Cookie` class should also use the `InteractsWithCookies` trait.
+```php
+use Justijndepover\CookieConsent\Concerns\InteractsWithCookies; // add this line
+
+class Cookie
+{
+    use InteractsWithCookies; // add this line
+}
+```
+
 ## configuration
 This is the config file
 ```php
