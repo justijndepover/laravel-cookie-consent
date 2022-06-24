@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use Justijndepover\CookieConsent\Controllers\CookieConsentController;
 
 Route::middleware(config('cookie-consent.middleware'))->group(function () {

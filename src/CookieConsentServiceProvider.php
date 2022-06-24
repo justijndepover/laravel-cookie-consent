@@ -4,7 +4,6 @@ namespace Justijndepover\CookieConsent;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\View\View;
-use DB;
 
 class CookieConsentServiceProvider extends ServiceProvider
 {

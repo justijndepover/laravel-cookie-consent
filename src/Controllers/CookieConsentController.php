@@ -3,22 +3,12 @@
 namespace Justijndepover\CookieConsent\Controllers;
 
 use Illuminate\Http\Request;
-use Cookie;
+use Illuminate\Support\Facades\Cookie;
 
 class CookieConsentController
 {
     public function index(Request $request)
     {
-        Cookie::queue(
-            config('cookie-consent.cookie_name'),
-            (string) '',
-            config('cookie-consent.cookie_lifetime')
-        );
-
-        if ((bool) $request->get('state') == false) {
-            return response('');
-        }
-
         $class = config('cookie-consent.cookie_class');
 
         if (! class_exists($class)) {
@@ -28,6 +18,16 @@ class CookieConsentController
         $object = new $class;
 
         if (! $object instanceof \Illuminate\Database\Eloquent\Model) {
+            return response('');
+        }
+
+        Cookie::queue(
+            config('cookie-consent.cookie_name'),
+            (string) ((bool) $request->get('state') == false) ? $object->pluck('id')->implode(',') : '',
+            config('cookie-consent.cookie_lifetime')
+        );
+
+        if ((bool) $request->get('state') == false) {
             return response('');
         }
 
