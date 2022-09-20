@@ -32,7 +32,7 @@ composer require justijndepover/laravel-cookie-consent
 After installation you have to publish the migration, if you don't have a cookies table / model
 ```sh
 php artisan vendor:publish --tag="laravel-cookie-consent-migration"
-php artisan migration
+php artisan migrate
 ```
 
 And optionally publish the configuration file
